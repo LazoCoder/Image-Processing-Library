@@ -1,5 +1,5 @@
 # Image-Processing-Library
-Library for processing and manipulating images. Includes edge detection, color channel swapping, embossing, sharpening thresholding and more. Some of the filters are applied by using <a href="https://en.wikipedia.org/wiki/Kernel_(image_processing)">kernel convolution</a> and <a href="https://msdn.microsoft.com/en-us/library/system.drawing.bitmap.lockbits(v=vs.110).aspx">LockBits</a> while others use multithreading where applicable.
+Library for processing and manipulating images. Includes edge detection, color channel swapping, embossing, sharpening thresholding and more. Some of the filters are applied by using <a href="https://en.wikipedia.org/wiki/Kernel_(image_processing)">kernel convolution</a> and <a href="https://msdn.microsoft.com/en-us/library/system.drawing.bitmap.lockbits(v=vs.110).aspx">LockBits</a> while others use multithreading where applicable. Also includes a histogram generator and a hue detector.
 
 # Samples
 
@@ -100,3 +100,15 @@ Each color channel can by dialed up or down to match the intensity of another co
 ## Cartoonify
 
 ![alt-tag] (Samples/cartoonify.jpg)
+
+## Histogram Generator
+
+The following is a histogram of the RGB channels of the original image.
+
+![alt-tag] (Samples/histogram.png)
+
+## Hue Detector
+
+The following detects the hue under the mouse and displays the details.
+
+![alt-tag] (Samples/hue_detection.gif)
