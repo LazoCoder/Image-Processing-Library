@@ -1,5 +1,5 @@
 # Image-Processing-Library
-Library for processing and manipulating images. Includes edge detection, color channel swapping, embossing, sharpening thresholding and more. Some of the filters are applied by using <a href="https://en.wikipedia.org/wiki/Kernel_(image_processing)">kernel convolution</a> and <a href="https://msdn.microsoft.com/en-us/library/system.drawing.bitmap.lockbits(v=vs.110).aspx">LockBits</a> while others use <a href="https://msdn.microsoft.com/en-us/library/system.drawing.bitmap.getpixel(v=vs.110).aspx">GetPixel</a> and multithreading. Also includes a histogram generator and a hue detector.
+Library for processing and manipulating images. Includes edge detection, color channel swapping, embossing, sharpening, thresholding and more. Some of the filters are applied by using <a href="https://en.wikipedia.org/wiki/Kernel_(image_processing)">kernel convolution</a> and <a href="https://msdn.microsoft.com/en-us/library/system.drawing.bitmap.lockbits(v=vs.110).aspx">LockBits</a> while others use <a href="https://msdn.microsoft.com/en-us/library/system.drawing.bitmap.getpixel(v=vs.110).aspx">GetPixel</a> and multithreading. Also includes a histogram generator and a hue detector.
 
 # Samples
 
