@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Drawing;
+using System.Drawing.Imaging;
 
 namespace ImageProcessing
 {
@@ -324,6 +325,95 @@ namespace ImageProcessing
 
 
             return bitmapResult;
+        }
+
+        // This ignores the pixels on the outside (starts on 1,1 as opposed to 0,0)
+        /// <summary>
+        /// Similar to BlurLow method but much faster as it uses lockbits.
+        /// </summary>
+        /// <param name="bmp">The image to blur.</param>
+        /// <returns>The blurred image.</returns>
+        public static Bitmap BlurFast(Bitmap bmp)
+        {
+            Bitmap output = new Bitmap(bmp.Width, bmp.Height);
+
+            unsafe
+            {
+                BitmapData bitmapData1 = bmp.LockBits(new Rectangle(0, 0, bmp.Width, bmp.Height), ImageLockMode.ReadWrite, bmp.PixelFormat);
+                BitmapData bitmapData2 = output.LockBits(new Rectangle(0, 0, output.Width, output.Height), ImageLockMode.ReadWrite, output.PixelFormat);
+
+                int bytesPerPixel = System.Drawing.Bitmap.GetPixelFormatSize(bmp.PixelFormat) / 8;
+                int heightInPixels = bitmapData1.Height;
+                int widthInBytes = bitmapData1.Width * bytesPerPixel;
+                byte* PtrFirstPixel = (byte*)bitmapData1.Scan0;
+
+                int bytesPerPixel2 = System.Drawing.Bitmap.GetPixelFormatSize(output.PixelFormat) / 8;
+                int heightInPixels2 = bitmapData2.Height;
+                int widthInBytes2 = bitmapData2.Width * bytesPerPixel;
+                byte* PtrFirstPixel2 = (byte*)bitmapData2.Scan0;
+
+                // For row of pixels. (start from 2nd pixel)
+                for (int y = 1; y < heightInPixels - 1; y++)
+                {
+                    // For each pixel in that row. (start from second pixel)
+                    for (int x = bytesPerPixel; x < widthInBytes - bytesPerPixel; x = x + bytesPerPixel)
+                    {
+                        byte* lineAbove = PtrFirstPixel + ((y - 1) * bitmapData1.Stride);
+                        byte* lineCurrent = PtrFirstPixel + (y * bitmapData1.Stride);
+                        byte* lineBelow = PtrFirstPixel + ((y + 1) * bitmapData1.Stride);
+
+                        byte* lineCurrent2 = PtrFirstPixel + (y * bitmapData2.Stride);
+
+                        int topLeftB = lineAbove[x - bytesPerPixel];
+                        int topLeftG = lineAbove[x - bytesPerPixel + 1];
+                        int topLeftR = lineAbove[x - bytesPerPixel + 2];
+
+                        int topB = lineAbove[x];
+                        int topG = lineAbove[x + 1];
+                        int topR = lineAbove[x + 2];
+
+                        int topRightB = lineAbove[x + bytesPerPixel];
+                        int topRightG = lineAbove[x + bytesPerPixel + 1];
+                        int topRightR = lineAbove[x + bytesPerPixel + 2];
+
+                        int leftB = lineCurrent[x - bytesPerPixel];
+                        int leftG = lineCurrent[x - bytesPerPixel + 1];
+                        int leftR = lineCurrent[x - bytesPerPixel + 2];
+
+                        int centerB = lineCurrent[x];
+                        int centerG = lineCurrent[x + 1];
+                        int centerR = lineCurrent[x + 2];
+
+                        int rightB = lineCurrent[x + bytesPerPixel];
+                        int rightG = lineCurrent[x + bytesPerPixel + 1];
+                        int rightR = lineCurrent[x + bytesPerPixel + 2];
+
+                        int bottomLeftB = lineCurrent[x - bytesPerPixel];
+                        int bottomLeftG = lineCurrent[x - bytesPerPixel + 1];
+                        int bottomLeftR = lineCurrent[x - bytesPerPixel + 2];
+
+                        int bottomB = lineCurrent[x];
+                        int bottomG = lineCurrent[x + 1];
+                        int bottomR = lineCurrent[x + 2];
+
+                        int bottomRightB = lineCurrent[x + bytesPerPixel];
+                        int bottomRightG = lineCurrent[x + bytesPerPixel + 1];
+                        int bottomRightR = lineCurrent[x + bytesPerPixel + 2];
+
+                        int newBlue = (topLeftB + topB + topRightB + leftB + centerB + rightB + bottomLeftB + centerB + rightB) / 9;
+                        int newGreen = (topLeftG + topG + topRightG + leftG + centerG + rightG + bottomLeftG + bottomG + bottomRightG) / 9;
+                        int newRed = (topLeftR + topR + topRightR + leftR + centerR + rightR + bottomLeftR + bottomR + bottomRightR) / 9;
+
+                        lineCurrent2[x] = (byte)newBlue;
+                        lineCurrent2[x + 1] = (byte)newGreen;
+                        lineCurrent2[x + 2] = (byte)newRed;
+                    }
+                }
+                bmp.UnlockBits(bitmapData1);
+                output.UnlockBits(bitmapData2);
+            }
+
+            return bmp;
         }
 
         /// <summary>
