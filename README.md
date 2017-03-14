@@ -5,7 +5,7 @@ Library for processing and manipulating images. Includes edge detection, color c
 
 The documentation below exhibits what is possible with the library. The following image will be used for the demonstrations:
 
-![alt-tag] (Samples/sample_image.jpg)
+![alt-tag](Samples/sample_image.jpg)
 
 ## Edge Detection
 
@@ -13,19 +13,19 @@ The library supports several different edge detection algorithms with different 
 
 ### Low Edge Detection
 
-![alt-tag] (Samples/edges_low.jpg)
+![alt-tag](Samples/edges_low.jpg)
 
 ### High Edge Detection
 
-![alt-tag] (Samples/edge_high.jpg)
+![alt-tag](Samples/edge_high.jpg)
 
 ### Horizontal Edge Detection
 
-![alt-tag] (Samples/edges_horizontal.jpg)
+![alt-tag](Samples/edges_horizontal.jpg)
 
 ### Vertical Edge Detection
 
-![alt-tag] (Samples/edges_vertical.jpg)
+![alt-tag](Samples/edges_vertical.jpg)
 
 ## Thresholding
 
@@ -33,15 +33,15 @@ The library supports three different thresholding algorithms. These algorithms u
 
 ### Binary Thresholding
 
-![alt-tag] (Samples/threshold.jpg)
+![alt-tag](Samples/threshold.jpg)
 
 ### Trinary Thresholding
 
-![alt-tag] (Samples/threshold_2.jpg)
+![alt-tag](Samples/threshold_2.jpg)
 
 ### Multi-Level Thresholding
 
-![alt-tag] (Samples/threshold_3.jpg)
+![alt-tag](Samples/threshold_3.jpg)
 
 ## Blurring
 
@@ -49,19 +49,19 @@ Different intensities of blurring are available, as well as motion blur.
 
 ### Regular Blur
 
-![alt-tag] (Samples/blur_high.jpg)
+![alt-tag](Samples/blur_high.jpg)
 
 ### Motion Blur
 
-![alt-tag] (Samples/motion_blur.jpg)
+![alt-tag](Samples/motion_blur.jpg)
 
 ## Sharpening
 
-![alt-tag] (Samples/sharpen.jpg)
+![alt-tag](Samples/sharpen.jpg)
 
 ## Embossing
 
-![alt-tag] (Samples/emboss.jpg)
+![alt-tag](Samples/emboss.jpg)
 
 ## Color Channel Manipulation
 
@@ -71,44 +71,44 @@ The library supports many different algorithms for manipulating the color channe
 
 The color channels can be swapped in many different ways. The following image has its green and blue channels swapped:
 
-![alt-tag] (Samples/SwapGreenAndBlue.jpg)
+![alt-tag](Samples/SwapGreenAndBlue.jpg)
 
 ### Channel Removal
 
 Each color channel can be removed. The following image has its red channel completely dialed down to zero:
 
-![alt-tag] (Samples/RemoveRed.jpg)
+![alt-tag](Samples/RemoveRed.jpg)
 
 ### Intensity Adjustment
 
 Each color channel can by dialed up or down to match the intensity of another color channel. The following image has its blue channel dialed up to match the intensity of its red channel, this creates purple where the red had high intensity:
 
-![alt-tag] (Samples/BlueToRed.jpg)
+![alt-tag](Samples/BlueToRed.jpg)
 
 ## Brighten
 
-![alt-tag] (Samples/brighten.jpg)
+![alt-tag](Samples/brighten.jpg)
 
 ## Darken
 
-![alt-tag] (Samples/darken.jpg)
+![alt-tag](Samples/darken.jpg)
 
 ## Invert
 
-![alt-tag] (Samples/invert.jpg)
+![alt-tag](Samples/invert.jpg)
 
 ## Cartoonify
 
-![alt-tag] (Samples/cartoonify.jpg)
+![alt-tag](Samples/cartoonify.jpg)
 
 ## Histogram Generator
 
 The following is a histogram of the RGB channels of the original image.
 
-![alt-tag] (Samples/histogram.png)
+![alt-tag](Samples/histogram.png)
 
 ## Hue Detector
 
 The following detects the hue under the mouse and displays the details.
 
-![alt-tag] (Samples/hue_detection.gif)
+![alt-tag](Samples/hue_detection.gif)
